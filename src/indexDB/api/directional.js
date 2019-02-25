@@ -1,9 +1,9 @@
-import todoApdapter from '../adapter/dexie/todoAdapter'
-let adapter = {
-  todoApdapter
+import todoAdapter from '../adapter/dexie/todoAdapter'
+let adapters = {
+  todoAdapter
 }
 function directional(config) {
-  this.config = config
+  let _adapter = new adapters[config.name]()
+  return _adapter
 }
-directional.prototype = new adapter['todoApdapter']()
 export default directional

@@ -1,14 +1,13 @@
 import directional from './directional'
 
-// import TodoApdapter from './indexDB/adapter/dexie/todoAdapter'
-
 const todoConfig = {
   adapter: 'dexie',
   name: 'todoAdapter'
 }
 
-function todoApi () {}
-
-todoApi.prototype = new directional(todoConfig)
+function todoApi () {
+  let direc = new directional(todoConfig)
+  return direc
+}
 
 export default todoApi

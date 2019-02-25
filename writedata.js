@@ -1,7 +1,7 @@
 var fs = require('fs')
 var faker = require('faker')
 var data = []
-for (var i = 0; i < 10000; i++) {
+for (var i = 0; i < 100000; i++) {
     let n = i + 1
   data.push({ fistName: faker.name.firstName(), lastName: faker.name.lastName()})
 }

@@ -7,6 +7,10 @@ import Table from './component/tables'
 
 window.api = DbModule()
 
+// window.api.Todos.bulkAdds()
+
+console.log('window.api',window.api)
+
 import dataSource from './datasource'
 class App extends React.Component {
   constructor(props) {
@@ -16,7 +20,7 @@ class App extends React.Component {
         window.api.Todos.get((err, data) => {
           return cb(err, data)
         })
-      }
+      },
     })
   }
 

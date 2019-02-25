@@ -10,13 +10,12 @@ todoAdapter.prototype.udpate = function () { return 'todoApdater update' }
 
 todoAdapter.prototype.get = function (cb) {
   new Promise (function (resolve, reject) {
-    window.dexiedb.todo.filter((t) => t.id <= 10000).toArray().then((data) => {
+    window.dexiedb.todo.filter((t) => t.id <= 100000).toArray().then((data) => {
       resolve(data)
     }).catch(err => {
       reject(err.toString())
     })
   }).then(data => {
-    console.log('data', data)
     return cb(null, data)
   })
 
