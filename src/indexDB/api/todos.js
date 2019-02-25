@@ -1,23 +1,14 @@
-const name = 'todo'
+import directional from './directional'
+
+// import TodoApdapter from './indexDB/adapter/dexie/todoAdapter'
+
 const todoConfig = {
-  adapter: 'dexie'
+  adapter: 'dexie',
+  name: 'todoAdapter'
 }
 
+function todoApi () {}
 
-export default class Todos {
-  constructor (db) {
-    this.db = db
-  }
+todoApi.prototype = new directional(todoConfig)
 
-  addData (cb) {
-    let self = this
-    this.db.todo.add({name: 'todos1', description: 'des todo1'}).then(function(err, data) {
-      return self.db[name].where({name: 'todos1'}).first(todo => todo).catch(error => { throw error.toString() })
-    }).then(function (todo) {
-      return cb(null, todo)
-    }).catch(function (e) {
-        console.log('Error: ' + e);
-        return cb(e)
-    });
-  }
-}
+export default todoApi

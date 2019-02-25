@@ -2,28 +2,28 @@ import '../public/style.scss'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import DbModule from './indexDB'
+import Table from './component/tables'
 
-import { HotTable } from '@handsontable-pro/react'
-import data from '../public/data.json'
+window.api = DbModule()
 
-
-import todoAdapter from './indexDB/adapter/dexie/todoAdapter'
-
-console.log('todoAdapter', new todoAdapter('database').get())
-// import dbModule from './indexDB'
-// var db = dbModule()
-// console.log(db.Todos.addData((err, todo) => console.log('111', err, todo)))
-
+import dataSource from './datasource'
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.data = data
+    this.dataSource = new dataSource({
+      query: (cb) => {
+        return window.api.Todos.get((err, data) => {
+          return cb(err, data)
+        })
+      }
+    })
   }
 
-  render() {
+  render () {
     return (
       <div id="hot-app" className='my-container'>
-        <HotTable data={this.data} colHeaders={true} rowHeaders={true} width="600" height="300" stretchH="all" />
+        <Table dataSource={this.dataSource}/>
       </div>
     )
   }

@@ -1,9 +1,7 @@
-import dexieModule from './dexie'
+import dexieModule from './connections/dexie'
 
 import tables from './tables'
 import Todos from './api/todos'
-
-
 class MyDb extends dexieModule {
   constructor () {
     super('auvenir', tables)
@@ -11,9 +9,9 @@ class MyDb extends dexieModule {
 }
 
 function init () {
-  let db = new MyDb().database
+  new MyDb()
   return {
-    Todos: new Todos(db)
+    Todos: new Todos()
   }
 }
 

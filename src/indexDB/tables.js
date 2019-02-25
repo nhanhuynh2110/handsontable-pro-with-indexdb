@@ -1,4 +1,3 @@
 export default {
-  todo: '++id, name, description',
-  engagement: '++id, name, description'
+  todo: '++id, fistName, lastName'
 }

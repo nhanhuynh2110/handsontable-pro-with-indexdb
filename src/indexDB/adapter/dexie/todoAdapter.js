@@ -1,13 +1,36 @@
 import Iadapter from '../Iapdater'
-function todoAdapter (db) {
-  this.db = db
-}
+import $ from 'jquery'
+import Dexie from 'dexie'
+
+function todoAdapter() {}
+
 todoAdapter.prototype = Iadapter
-todoAdapter.prototype.get = function () {
-  return this.db[name].where({name: 'todos1'}).first(todo => todo).catch(error => { throw error.toString() })
+todoAdapter.prototype.set = function () { return 'todoApdapter set' }
+todoAdapter.prototype.udpate = function () { return 'todoApdater update' }
+
+todoAdapter.prototype.get = function (cb) {
+  new Promise (function (resolve, reject) {
+    window.dexiedb.todo.filter((t) => t.id <= 10000).toArray().then((data) => {
+      resolve(data)
+    }).catch(err => {
+      reject(err.toString())
+    })
+  }).then(data => {
+    console.log('data', data)
+    return cb(null, data)
+  })
+
 }
 
-
+todoAdapter.prototype.bulkAdds = function (cb) {
+  $.getJSON('data.json', function (json) {
+    window.dexiedb.todo.bulkAdd(json).then((lastKey) => {
+    }).catch(Dexie.BulkError, function (e) {
+      console.error ("Some raindrops did not succeed. However, " +
+        100000-e.failures.length + " raindrops was added successfully")
+    })
+  })
+}
 export default todoAdapter
 
 

@@ -1,14 +1,6 @@
-
-
-// class Directional {
-//   constructor (config) {
-
-//   }
-// }
-
+import TodoApdapter from '../adapter/dexie/todoAdapter'
 function directional(config) {
   this.config = config
 }
-directional.prototype = require(this.config.adapter)
-
+directional.prototype = new TodoApdapter()
 export default directional
