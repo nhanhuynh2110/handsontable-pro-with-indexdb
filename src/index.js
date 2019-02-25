@@ -13,7 +13,7 @@ class App extends React.Component {
     super(props)
     this.dataSource = new dataSource({
       query: (cb) => {
-        return window.api.Todos.get((err, data) => {
+        window.api.Todos.get((err, data) => {
           return cb(err, data)
         })
       }
